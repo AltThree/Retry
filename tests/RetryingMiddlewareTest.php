@@ -22,13 +22,24 @@ use PHPUnit_Framework_TestCase;
  */
 class RetryingMiddlewareTest extends PHPUnit_Framework_TestCase
 {
-    public function testHandlesBasic()
+    public function testHandlesOnce()
     {
         $output = (new RetryingMiddleware())->handle(new CommandStub1(), function () {
             return 'foo';
         });
 
         $this->assertSame('foo', $output);
+    }
+
+    public function testHandlesMultiple()
+    {
+        $times = 0;
+
+        (new RetryingMiddleware())->handle(new CommandStub2(), function () use (&$times) {
+            $times++;
+        });
+
+        $this->assertSame(1, $times);
     }
 
     /**
