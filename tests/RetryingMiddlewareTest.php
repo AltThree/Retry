@@ -13,14 +13,14 @@ namespace AltThree\Tests\Retry;
 
 use AltThree\Retry\RetryingMiddleware;
 use Exception;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This is the retrying middleware test class.
  *
  * @author Graham Campbell <graham@alt-three.com>
  */
-class RetryingMiddlewareTest extends PHPUnit_Framework_TestCase
+class RetryingMiddlewareTest extends TestCase
 {
     public function testHandlesOnce()
     {
